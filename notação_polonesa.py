@@ -12,7 +12,6 @@ class Pilha:
         no.next = self.top
         self.top = no
         self.size += 1
-        print(f"elemento {no.valor} inserido")
 
     def __str__(self):
         if self.top is not None:
@@ -47,15 +46,16 @@ valor=""
 
 for elemento in notacaoPolonesa:
     
-    
-    if elemento==" " or elemento==notacaoPolonesa[-1]:
-      notacaoDecomposta.append(valor)
-      valor=""
-    else:
+    if elemento==notacaoPolonesa[-1]:
         valor+=elemento
-    
-
-print(notacaoDecomposta)
+        notacaoDecomposta.append(valor)
+        valor=""
+    else:
+        if elemento==" ":
+            notacaoDecomposta.append(valor)
+            valor=""
+        else:
+            valor+=elemento
 
 listaChar = ("*","/","+","-")
 pilhaElementos = Pilha()
@@ -66,7 +66,6 @@ for item in notacaoDecomposta:
     penultimo=0
 
     if item in listaChar:
-        print("Operação")
         ultimo=pilhaElementos.topo()
         penultimo=ultimo.next
 
@@ -95,5 +94,5 @@ for item in notacaoDecomposta:
     else:
         pilhaElementos.push(No(float(item)))
 
-
-print(pilhaElementos)
+print(f"\n ----------------------------------\n")
+print(f"O resultado da operação é: {pilhaElementos.topo().valor}")
